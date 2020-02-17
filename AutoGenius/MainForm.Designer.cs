@@ -90,12 +90,13 @@
             this.RichTextBoxLog.Size = new System.Drawing.Size(371, 144);
             this.RichTextBoxLog.TabIndex = 4;
             this.RichTextBoxLog.Text = "";
+            this.RichTextBoxLog.WordWrap = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 378);
+            this.ClientSize = new System.Drawing.Size(384, 202);
             this.Controls.Add(this.RichTextBoxLog);
             this.Controls.Add(this.ButtonHttpStop);
             this.Controls.Add(this.ButtonHttpStart);

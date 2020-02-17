@@ -83,6 +83,7 @@ namespace AutoGenius
                     {
                         response.NotFoundResponse();
                     }
+                    System.GC.Collect();
                 });
                 t.Start();
             }
