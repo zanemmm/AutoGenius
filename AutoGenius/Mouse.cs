@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace AutoGenius
@@ -12,6 +13,12 @@ namespace AutoGenius
     {
         [DllImport("user32.dll")]
         private static extern int mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+
+        [DllImport("user32.dll")]
+        private static extern bool GetCursorPos(out Point pt);
+
+        [DllImport("User32.Dll")]
+        public static extern long SetCursorPos(int x, int y);
 
         //移动鼠标 
         const int MOUSEEVENTF_MOVE = 0x0001;
@@ -42,6 +49,8 @@ namespace AutoGenius
             var action = querys.Get("action");
             switch (action)
             {
+                case "position":
+                    return Position(querys, response);
                 case "move":
                     return Move(querys, response);
                 case "click":
@@ -52,6 +61,14 @@ namespace AutoGenius
             return false;
         }
 
+        private static bool Position(NameValueCollection querys, HTTPResponse response)
+        {
+            GetCursorPos(out Point p);
+            response.DataResponse(string.Format("{{ \"x\": {0}, \"y\": {1} }}", p.X, p.Y));
+            Log.Info(string.Format("[鼠标]位置 x: {0}, y: {1}", p.X, p.Y));
+            return true;
+        }
+
         private static bool Move(NameValueCollection querys, HTTPResponse response)
         {
             var x = querys.Get("x");
@@ -60,7 +77,7 @@ namespace AutoGenius
             {
                 return false;
             }
-            mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE, int.Parse(x) * 65536 / SW, int.Parse(y) * 65536 / SH, 0, 0);
+            SetCursorPos(int.Parse(x), int.Parse(y));
             response.SuccessResponse();
             Log.Info(string.Format("[鼠标]移动 x: {0}, y: {1}", x, y));
             return true;
@@ -94,7 +111,7 @@ namespace AutoGenius
             }
             mouse_event(flags, 0, 0, 0, 0);
             response.SuccessResponse();
-            Log.Info(string.Format("[鼠标] {0} 单击", btnText));
+            Log.Info(string.Format("[鼠标]{0} 单击", btnText));
             return true;
         }
 
@@ -128,7 +145,7 @@ namespace AutoGenius
             System.Threading.Thread.Sleep(100);
             mouse_event(flags, 0, 0, 0, 0);
             response.SuccessResponse();
-            Log.Info(string.Format("[鼠标] {0} 双击", btnText));
+            Log.Info(string.Format("[鼠标]{0} 双击", btnText));
             return true;
         }
     }

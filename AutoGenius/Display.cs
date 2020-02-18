@@ -26,6 +26,8 @@ namespace AutoGenius
                     return FindImageFromScreen(querys, response);
                 case "find_image_from_screen_rect":
                     return FindImageFromScreenRect(querys, response);
+                case "get_color_from_screen":
+                    return GetColorFromScreen(querys, response);
                 case "find_color_from_screen":
                     return FindColorFromScreen(querys, response);
                 case "find_color_from_screen_rect":
@@ -94,6 +96,22 @@ namespace AutoGenius
             {
                 return false;
             }
+        }
+
+        private static bool GetColorFromScreen(NameValueCollection querys, HTTPResponse response)
+        {
+            var x = querys.Get("x");
+            var y = querys.Get("y");
+            if (x == null || y == null)
+            {
+                return false;
+            }
+            Mat screen = CaptureScreen();
+            Vec3b p = screen.Get<Vec3b>(int.Parse(y), int.Parse(y));
+            int pColor = p.Item2 << 16 | p.Item1 << 8 | p.Item0;
+            response.DataResponse(string.Format("\"#{0:X}\"", pColor));
+            Log.Info(string.Format("[屏幕]取色 X:{0},Y:{1},COLOR:#{2:X}", x, y, pColor));
+            return true;
         }
 
         private static bool FindColorFromScreen(NameValueCollection querys, HTTPResponse response)

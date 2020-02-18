@@ -18,7 +18,7 @@ namespace AutoGenius
         public void DataResponse(string data)
         {
             response.StatusCode = 200;
-            response.ContentType = "application/json";
+            response.ContentType = "application/json;charset=gb2312";
             byte[] buffer = Encoding.Default.GetBytes(string.Format("{{\"code\":200, \"msg\": \"ok\", \"data\": {0}}}", data));
             response.OutputStream.Write(buffer, 0, buffer.Length);
             Close();
