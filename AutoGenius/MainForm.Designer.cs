@@ -28,11 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.LabelHttpPort = new System.Windows.Forms.Label();
             this.TextboxHttpPort = new System.Windows.Forms.TextBox();
             this.ButtonHttpStart = new System.Windows.Forms.Button();
             this.ButtonHttpStop = new System.Windows.Forms.Button();
             this.RichTextBoxLog = new System.Windows.Forms.RichTextBox();
+            this.ButtonExportLog = new System.Windows.Forms.Button();
+            this.ButtonEmptyLog = new System.Windows.Forms.Button();
+            this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.ButtonAbout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LabelHttpPort
@@ -92,20 +98,62 @@
             this.RichTextBoxLog.Text = "";
             this.RichTextBoxLog.WordWrap = false;
             // 
+            // ButtonExportLog
+            // 
+            this.ButtonExportLog.Location = new System.Drawing.Point(222, 194);
+            this.ButtonExportLog.Name = "ButtonExportLog";
+            this.ButtonExportLog.Size = new System.Drawing.Size(75, 23);
+            this.ButtonExportLog.TabIndex = 5;
+            this.ButtonExportLog.Text = "导出日志";
+            this.ButtonExportLog.UseVisualStyleBackColor = true;
+            this.ButtonExportLog.Click += new System.EventHandler(this.ButtonExportLog_Click);
+            // 
+            // ButtonEmptyLog
+            // 
+            this.ButtonEmptyLog.Location = new System.Drawing.Point(303, 194);
+            this.ButtonEmptyLog.Name = "ButtonEmptyLog";
+            this.ButtonEmptyLog.Size = new System.Drawing.Size(75, 23);
+            this.ButtonEmptyLog.TabIndex = 6;
+            this.ButtonEmptyLog.Text = "清空日志";
+            this.ButtonEmptyLog.UseVisualStyleBackColor = true;
+            this.ButtonEmptyLog.Click += new System.EventHandler(this.ButtonEmptyLog_Click);
+            // 
+            // NotifyIcon
+            // 
+            this.NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon.Icon")));
+            this.NotifyIcon.Text = "自动精灵(AutoGenius)";
+            this.NotifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseClick);
+            // 
+            // ButtonAbout
+            // 
+            this.ButtonAbout.Location = new System.Drawing.Point(7, 194);
+            this.ButtonAbout.Name = "ButtonAbout";
+            this.ButtonAbout.Size = new System.Drawing.Size(75, 23);
+            this.ButtonAbout.TabIndex = 7;
+            this.ButtonAbout.Text = "关于软件";
+            this.ButtonAbout.UseVisualStyleBackColor = true;
+            this.ButtonAbout.Click += new System.EventHandler(this.ButtonAbout_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 202);
+            this.ClientSize = new System.Drawing.Size(384, 223);
+            this.Controls.Add(this.ButtonAbout);
+            this.Controls.Add(this.ButtonEmptyLog);
+            this.Controls.Add(this.ButtonExportLog);
             this.Controls.Add(this.RichTextBoxLog);
             this.Controls.Add(this.ButtonHttpStop);
             this.Controls.Add(this.ButtonHttpStart);
             this.Controls.Add(this.TextboxHttpPort);
             this.Controls.Add(this.LabelHttpPort);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "AutoGenius";
+            this.ShowInTaskbar = false;
+            this.Text = "自动精灵(AutoGenius)";
+            this.Deactivate += new System.EventHandler(this.MainForm_Deactivate);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -119,6 +167,10 @@
         private System.Windows.Forms.Button ButtonHttpStart;
         private System.Windows.Forms.Button ButtonHttpStop;
         private System.Windows.Forms.RichTextBox RichTextBoxLog;
+        private System.Windows.Forms.Button ButtonExportLog;
+        private System.Windows.Forms.Button ButtonEmptyLog;
+        private System.Windows.Forms.NotifyIcon NotifyIcon;
+        private System.Windows.Forms.Button ButtonAbout;
     }
 }
 

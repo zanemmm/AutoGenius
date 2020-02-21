@@ -21,6 +21,10 @@ namespace AutoGenius
             Action action = () =>
             {
                 var lines = richTextBox.Lines.ToList();
+                if (lines.Count > 999)
+                {
+                    lines.RemoveAt(0);
+                }
                 var log = DateTime.Now.ToString("[MM-dd hh:mm:ss] ") + info;
                 lines.Add(log);
                 richTextBox.Lines = lines.ToArray();

@@ -37,6 +37,10 @@ namespace AutoGenius
             var action = querys.Get("action");
             switch (action)
             {
+                case "get_screen_size":
+                    return GetScreenSize(querys, response);
+                case "get_window_rect":
+                    return GetWindowRect(querys, response);
                 case "find_image_from_screen":
                     return FindImageFromScreen(querys, response);
                 case "find_image_from_screen_rect":
@@ -55,6 +59,34 @@ namespace AutoGenius
                     return GetWindowHandleByTitle(querys, response);
             }
             return false;
+        }
+
+        private static bool GetScreenSize(NameValueCollection querys, HTTPResponse response)
+        {
+            response.DataResponse(string.Format("{{ \"w\": {0}, \"h\": {1} }}", SW, SH));
+            Log.Info(string.Format("[屏幕]屏幕大小 宽:{0},高:{1}", SW, SH));
+            return true;
+        }
+
+        private static bool GetWindowRect(NameValueCollection querys, HTTPResponse response)
+        {
+            var handle = querys.Get("handle");
+            if (handle == null)
+            {
+                return false;
+            }
+            try
+            {
+                var sc = new ScreenCapture();
+                var rc = sc.GetWindowRC(new IntPtr(int.Parse(handle)));
+                response.DataResponse(string.Format("{{ \"w\": {0}, \"h\": {1}, \"l\": {2}, \"t\": {3} }}", rc.Width, rc.Height, rc.Left, rc.Top));
+                Log.Info(string.Format("[屏幕]窗口大小位置 宽:{0},高:{1},左距:{2},顶距:{3}", rc.Width, rc.Height, rc.Left, rc.Top));
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private static bool FindImageFromScreen(NameValueCollection querys, HTTPResponse response)
@@ -230,12 +262,19 @@ namespace AutoGenius
             {
                 return false;
             }
-            Mat screen = CaptureScreen();
-            Vec3b p = screen.Get<Vec3b>(int.Parse(y), int.Parse(y));
-            int pColor = p.Item2 << 16 | p.Item1 << 8 | p.Item0;
-            response.DataResponse(string.Format("\"#{0:X}\"", pColor));
-            Log.Info(string.Format("[屏幕]取色 X:{0},Y:{1},COLOR:#{2:X}", x, y, pColor));
-            return true;
+            try
+            {
+                Mat screen = CaptureScreen();
+                Vec3b p = screen.Get<Vec3b>(int.Parse(y), int.Parse(y));
+                int pColor = p.Item2 << 16 | p.Item1 << 8 | p.Item0;
+                response.DataResponse(string.Format("\"#{0:X}\"", pColor));
+                Log.Info(string.Format("[屏幕]取色 X:{0},Y:{1},COLOR:#{2:X}", x, y, pColor));
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private static bool FindColorFromScreen(NameValueCollection querys, HTTPResponse response)
@@ -476,9 +515,18 @@ namespace AutoGenius
 
         public RECT rc;
 
-        public Bitmap GetScreenshot(IntPtr ihandle)
+        public RECT GetWindowRC(IntPtr hwnd)
         {
-            IntPtr hwnd = ihandle;//handle here
+            if (hwnd == IntPtr.Zero)
+            {
+                return new RECT(0, 0, 0, 0);
+            }
+            GetWindowRect(new HandleRef(null, hwnd), out rc);
+            return rc;
+        }
+
+        public Bitmap GetScreenshot(IntPtr hwnd)
+        {
             if (hwnd == IntPtr.Zero)
             {
                 return null;
@@ -517,7 +565,7 @@ namespace AutoGenius
 
         public void WriteBitmapToFile(string filename, Bitmap bitmap)
         {
-            bitmap.Save(filename, ImageFormat.Jpeg);
+            bitmap.Save(filename, System.Drawing.Imaging.ImageFormat.Jpeg);
         }
     }
 }

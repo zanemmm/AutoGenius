@@ -34,6 +34,8 @@ namespace AutoGenius
         const int MOUSEEVENTF_MIDDLEDOWN = 0x0020;
         //模拟鼠标中键抬起 
         const int MOUSEEVENTF_MIDDLEUP = 0x0040;
+        // 模拟鼠标中键滚动
+        const int MOUSEEVENTF_WHEEL = 0x0800;
         //标示是否采用绝对坐标 
         const int MOUSEEVENTF_ABSOLUTE = 0x8000;
         // 鼠标按键
@@ -57,6 +59,8 @@ namespace AutoGenius
                     return Click(querys, response);
                 case "dbclick":
                     return DoubleClick(querys, response);
+                case "wheel":
+                    return Wheel(querys, response);
             }
             return false;
         }
@@ -146,6 +150,20 @@ namespace AutoGenius
             mouse_event(flags, 0, 0, 0, 0);
             response.SuccessResponse();
             Log.Info(string.Format("[鼠标]{0} 双击", btnText));
+            return true;
+        }
+
+        private static bool Wheel(NameValueCollection querys, HTTPResponse response)
+        {
+            var y = querys.Get("y");
+            if (y == null)
+            {
+                return false;
+            }
+            var dy = -int.Parse(y);
+            mouse_event(MOUSEEVENTF_WHEEL, 0, 0, dy, 0);
+            response.SuccessResponse();
+            Log.Info(string.Format("[鼠标]滚动 {0}", dy));
             return true;
         }
     }

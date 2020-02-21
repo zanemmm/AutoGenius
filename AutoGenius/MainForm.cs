@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -14,9 +15,12 @@ namespace AutoGenius
     {
         readonly HTTPServer httpServer = new HTTPServer();
 
+        private readonly Form about;
+
         public MainForm()
         {
             InitializeComponent();
+            about = new About();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -51,6 +55,54 @@ namespace AutoGenius
                ButtonHttpStart.Enabled = !ButtonHttpStop.Enabled;
                TextboxHttpPort.Enabled = ButtonHttpStart.Enabled;
             }
+        }
+
+        private void ButtonEmptyLog_Click(object sender, EventArgs e)
+        {
+            var res = MessageBox.Show("确定清空日志?", "提示", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
+            {
+                RichTextBoxLog.Text = "";
+            }
+        }
+
+        private void ButtonExportLog_Click(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(@".\logs"))
+            {
+                Directory.CreateDirectory(@".\logs");
+
+            }
+            var filename = @".\logs\" + DateTime.Now.ToString(@"MM-dd-hh_mm_ss_") + "log.txt";
+            File.WriteAllText(filename, RichTextBoxLog.Text);
+            MessageBox.Show(string.Format("导出日志为 {0}", filename), "提示");
+        }
+
+        private void MainForm_Deactivate(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Visible = false;
+                NotifyIcon.Visible = true;
+            }
+        }
+
+
+        private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Visible = true;
+                WindowState = FormWindowState.Normal;
+                Activate();
+                NotifyIcon.Visible = false;
+            }
+        }
+
+        private void ButtonAbout_Click(object sender, EventArgs e)
+        {
+            about.Visible = true;
+            about.Activate();
         }
     }
 }
