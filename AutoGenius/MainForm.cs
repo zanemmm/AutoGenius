@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using OpenCvSharp;
 
@@ -103,6 +105,52 @@ namespace AutoGenius
         {
             about.Visible = true;
             about.Activate();
+        }
+
+        private void ButtonOpenScriptDialog_Click(object sender, EventArgs e)
+        {
+            if (OpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                TextBoxScriptFile.Text = OpenFileDialog.FileName;
+            }
+        }
+
+        private void ButtonStartScript_Click(object sender, EventArgs e)
+        {
+            var t = new Task(() => {
+                Process p = new Process();
+                p.StartInfo.FileName = "cmd.exe";
+                p.StartInfo.UseShellExecute = false;        //是否使用操作系统shell启动
+                p.StartInfo.RedirectStandardInput = true;   //接受来自调用程序的输入信息
+                p.StartInfo.RedirectStandardOutput = true;  //由调用程序获取输出信息
+                p.StartInfo.RedirectStandardError = true;   //重定向标准错误输出
+                p.StartInfo.CreateNoWindow = true;
+                p.Start();
+                var cmd = "ping baidu.com&exit";
+                p.StandardInput.WriteLine(cmd);
+                p.StandardInput.AutoFlush = true;
+                StreamReader reader = p.StandardOutput;//截取输出流
+                string line = reader.ReadLine();//每次读取一行
+                UpdateScriptOutput(line);
+                while (!reader.EndOfStream)
+                {
+                    line = reader.ReadLine();
+                    UpdateScriptOutput(line);
+                }
+                p.WaitForExit();//等待程序执行完退出进程
+                p.Close();
+            });
+            t.Start();
+        }
+
+        private delegate void DelegateUpdateScriptOutput();
+        private void UpdateScriptOutput(string line)
+        {
+            DelegateUpdateScriptOutput output = delegate ()
+            {
+                RichTextBoxScriptOutput.AppendText(line + "\n");
+            };
+            RichTextBoxScriptOutput.Invoke(output);
         }
     }
 }
