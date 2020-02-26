@@ -1,0 +1,3 @@
+[submodule "php_library"]
+	path = php_library
+	url = https://github.com/zanemmm/PHP-AutoGenius
