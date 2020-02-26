@@ -47,6 +47,8 @@
             this.ButtonOpenScriptDialog = new System.Windows.Forms.Button();
             this.TextBoxScriptFile = new System.Windows.Forms.TextBox();
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.ButtonExportScriptOutput = new System.Windows.Forms.Button();
+            this.ButtonClearScriptOutput = new System.Windows.Forms.Button();
             this.MainTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -183,6 +185,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.ButtonClearScriptOutput);
+            this.tabPage2.Controls.Add(this.ButtonExportScriptOutput);
             this.tabPage2.Controls.Add(this.ButtonStartScript);
             this.tabPage2.Controls.Add(this.RichTextBoxScriptOutput);
             this.tabPage2.Controls.Add(this.ButtonOpenScriptDialog);
@@ -247,6 +251,28 @@
             // 
             this.OpenFileDialog.Filter = "|*.php";
             // 
+            // ButtonExportScriptOutput
+            // 
+            this.ButtonExportScriptOutput.Location = new System.Drawing.Point(14, 241);
+            this.ButtonExportScriptOutput.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonExportScriptOutput.Name = "ButtonExportScriptOutput";
+            this.ButtonExportScriptOutput.Size = new System.Drawing.Size(117, 29);
+            this.ButtonExportScriptOutput.TabIndex = 7;
+            this.ButtonExportScriptOutput.Text = "导出脚本输出";
+            this.ButtonExportScriptOutput.UseVisualStyleBackColor = true;
+            this.ButtonExportScriptOutput.Click += new System.EventHandler(this.ButtonExportScriptOutput_Click);
+            // 
+            // ButtonClearScriptOutput
+            // 
+            this.ButtonClearScriptOutput.Location = new System.Drawing.Point(139, 241);
+            this.ButtonClearScriptOutput.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonClearScriptOutput.Name = "ButtonClearScriptOutput";
+            this.ButtonClearScriptOutput.Size = new System.Drawing.Size(116, 29);
+            this.ButtonClearScriptOutput.TabIndex = 8;
+            this.ButtonClearScriptOutput.Text = "清空脚本输出";
+            this.ButtonClearScriptOutput.UseVisualStyleBackColor = true;
+            this.ButtonClearScriptOutput.Click += new System.EventHandler(this.ButtonClearScriptOutput_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -261,6 +287,7 @@
             this.ShowInTaskbar = false;
             this.Text = "自动精灵(AutoGenius)";
             this.Deactivate += new System.EventHandler(this.MainForm_Deactivate);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -290,6 +317,8 @@
         private System.Windows.Forms.Button ButtonOpenScriptDialog;
         private System.Windows.Forms.TextBox TextBoxScriptFile;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog;
+        private System.Windows.Forms.Button ButtonClearScriptOutput;
+        private System.Windows.Forms.Button ButtonExportScriptOutput;
     }
 }
 
