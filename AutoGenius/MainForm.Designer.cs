@@ -45,9 +45,10 @@
             // 
             this.LabelHttpPort.AutoSize = true;
             this.LabelHttpPort.Font = new System.Drawing.Font("宋体", 12F);
-            this.LabelHttpPort.Location = new System.Drawing.Point(4, 17);
+            this.LabelHttpPort.Location = new System.Drawing.Point(5, 21);
+            this.LabelHttpPort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelHttpPort.Name = "LabelHttpPort";
-            this.LabelHttpPort.Size = new System.Drawing.Size(112, 16);
+            this.LabelHttpPort.Size = new System.Drawing.Size(139, 20);
             this.LabelHttpPort.TabIndex = 0;
             this.LabelHttpPort.Text = "HTTP服务端口:";
             // 
@@ -55,9 +56,10 @@
             // 
             this.TextboxHttpPort.BackColor = System.Drawing.Color.White;
             this.TextboxHttpPort.Font = new System.Drawing.Font("宋体", 12F);
-            this.TextboxHttpPort.Location = new System.Drawing.Point(122, 12);
+            this.TextboxHttpPort.Location = new System.Drawing.Point(163, 15);
+            this.TextboxHttpPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TextboxHttpPort.Name = "TextboxHttpPort";
-            this.TextboxHttpPort.Size = new System.Drawing.Size(100, 26);
+            this.TextboxHttpPort.Size = new System.Drawing.Size(132, 30);
             this.TextboxHttpPort.TabIndex = 1;
             this.TextboxHttpPort.Text = "2020";
             this.TextboxHttpPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextboxHttpPort_KeyPress);
@@ -65,9 +67,10 @@
             // ButtonHttpStart
             // 
             this.ButtonHttpStart.Font = new System.Drawing.Font("宋体", 12F);
-            this.ButtonHttpStart.Location = new System.Drawing.Point(228, 12);
+            this.ButtonHttpStart.Location = new System.Drawing.Point(304, 15);
+            this.ButtonHttpStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonHttpStart.Name = "ButtonHttpStart";
-            this.ButtonHttpStart.Size = new System.Drawing.Size(72, 26);
+            this.ButtonHttpStart.Size = new System.Drawing.Size(96, 32);
             this.ButtonHttpStart.TabIndex = 2;
             this.ButtonHttpStart.Text = "开启";
             this.ButtonHttpStart.UseVisualStyleBackColor = true;
@@ -77,9 +80,10 @@
             // 
             this.ButtonHttpStop.Enabled = false;
             this.ButtonHttpStop.Font = new System.Drawing.Font("宋体", 12F);
-            this.ButtonHttpStop.Location = new System.Drawing.Point(306, 12);
+            this.ButtonHttpStop.Location = new System.Drawing.Point(408, 15);
+            this.ButtonHttpStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonHttpStop.Name = "ButtonHttpStop";
-            this.ButtonHttpStop.Size = new System.Drawing.Size(72, 26);
+            this.ButtonHttpStop.Size = new System.Drawing.Size(96, 32);
             this.ButtonHttpStop.TabIndex = 3;
             this.ButtonHttpStop.Text = "停止";
             this.ButtonHttpStop.UseVisualStyleBackColor = true;
@@ -89,20 +93,22 @@
             // 
             this.RichTextBoxLog.BackColor = System.Drawing.Color.White;
             this.RichTextBoxLog.Font = new System.Drawing.Font("宋体", 9F);
-            this.RichTextBoxLog.Location = new System.Drawing.Point(7, 44);
+            this.RichTextBoxLog.Location = new System.Drawing.Point(9, 55);
+            this.RichTextBoxLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RichTextBoxLog.Name = "RichTextBoxLog";
             this.RichTextBoxLog.ReadOnly = true;
             this.RichTextBoxLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.RichTextBoxLog.Size = new System.Drawing.Size(371, 144);
+            this.RichTextBoxLog.Size = new System.Drawing.Size(493, 179);
             this.RichTextBoxLog.TabIndex = 4;
             this.RichTextBoxLog.Text = "";
             this.RichTextBoxLog.WordWrap = false;
             // 
             // ButtonExportLog
             // 
-            this.ButtonExportLog.Location = new System.Drawing.Point(222, 194);
+            this.ButtonExportLog.Location = new System.Drawing.Point(296, 242);
+            this.ButtonExportLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonExportLog.Name = "ButtonExportLog";
-            this.ButtonExportLog.Size = new System.Drawing.Size(75, 23);
+            this.ButtonExportLog.Size = new System.Drawing.Size(100, 29);
             this.ButtonExportLog.TabIndex = 5;
             this.ButtonExportLog.Text = "导出日志";
             this.ButtonExportLog.UseVisualStyleBackColor = true;
@@ -110,9 +116,10 @@
             // 
             // ButtonEmptyLog
             // 
-            this.ButtonEmptyLog.Location = new System.Drawing.Point(303, 194);
+            this.ButtonEmptyLog.Location = new System.Drawing.Point(404, 242);
+            this.ButtonEmptyLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonEmptyLog.Name = "ButtonEmptyLog";
-            this.ButtonEmptyLog.Size = new System.Drawing.Size(75, 23);
+            this.ButtonEmptyLog.Size = new System.Drawing.Size(100, 29);
             this.ButtonEmptyLog.TabIndex = 6;
             this.ButtonEmptyLog.Text = "清空日志";
             this.ButtonEmptyLog.UseVisualStyleBackColor = true;
@@ -126,9 +133,10 @@
             // 
             // ButtonAbout
             // 
-            this.ButtonAbout.Location = new System.Drawing.Point(7, 194);
+            this.ButtonAbout.Location = new System.Drawing.Point(9, 242);
+            this.ButtonAbout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonAbout.Name = "ButtonAbout";
-            this.ButtonAbout.Size = new System.Drawing.Size(75, 23);
+            this.ButtonAbout.Size = new System.Drawing.Size(100, 29);
             this.ButtonAbout.TabIndex = 7;
             this.ButtonAbout.Text = "关于软件";
             this.ButtonAbout.UseVisualStyleBackColor = true;
@@ -136,9 +144,9 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 223);
+            this.ClientSize = new System.Drawing.Size(512, 279);
             this.Controls.Add(this.ButtonAbout);
             this.Controls.Add(this.ButtonEmptyLog);
             this.Controls.Add(this.ButtonExportLog);
@@ -149,11 +157,13 @@
             this.Controls.Add(this.LabelHttpPort);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.ShowInTaskbar = false;
             this.Text = "自动精灵(AutoGenius)";
             this.Deactivate += new System.EventHandler(this.MainForm_Deactivate);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
