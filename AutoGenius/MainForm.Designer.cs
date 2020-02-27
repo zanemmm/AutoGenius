@@ -57,7 +57,7 @@
             this.TextboxHttpPort.BackColor = System.Drawing.Color.White;
             this.TextboxHttpPort.Font = new System.Drawing.Font("宋体", 12F);
             this.TextboxHttpPort.Location = new System.Drawing.Point(163, 15);
-            this.TextboxHttpPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TextboxHttpPort.Margin = new System.Windows.Forms.Padding(4);
             this.TextboxHttpPort.Name = "TextboxHttpPort";
             this.TextboxHttpPort.Size = new System.Drawing.Size(132, 30);
             this.TextboxHttpPort.TabIndex = 1;
@@ -68,7 +68,7 @@
             // 
             this.ButtonHttpStart.Font = new System.Drawing.Font("宋体", 12F);
             this.ButtonHttpStart.Location = new System.Drawing.Point(304, 15);
-            this.ButtonHttpStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ButtonHttpStart.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonHttpStart.Name = "ButtonHttpStart";
             this.ButtonHttpStart.Size = new System.Drawing.Size(96, 32);
             this.ButtonHttpStart.TabIndex = 2;
@@ -81,7 +81,7 @@
             this.ButtonHttpStop.Enabled = false;
             this.ButtonHttpStop.Font = new System.Drawing.Font("宋体", 12F);
             this.ButtonHttpStop.Location = new System.Drawing.Point(408, 15);
-            this.ButtonHttpStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ButtonHttpStop.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonHttpStop.Name = "ButtonHttpStop";
             this.ButtonHttpStop.Size = new System.Drawing.Size(96, 32);
             this.ButtonHttpStop.TabIndex = 3;
@@ -94,7 +94,7 @@
             this.RichTextBoxLog.BackColor = System.Drawing.Color.White;
             this.RichTextBoxLog.Font = new System.Drawing.Font("宋体", 9F);
             this.RichTextBoxLog.Location = new System.Drawing.Point(9, 55);
-            this.RichTextBoxLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RichTextBoxLog.Margin = new System.Windows.Forms.Padding(4);
             this.RichTextBoxLog.Name = "RichTextBoxLog";
             this.RichTextBoxLog.ReadOnly = true;
             this.RichTextBoxLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
@@ -106,7 +106,7 @@
             // ButtonExportLog
             // 
             this.ButtonExportLog.Location = new System.Drawing.Point(296, 242);
-            this.ButtonExportLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ButtonExportLog.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonExportLog.Name = "ButtonExportLog";
             this.ButtonExportLog.Size = new System.Drawing.Size(100, 29);
             this.ButtonExportLog.TabIndex = 5;
@@ -117,7 +117,7 @@
             // ButtonEmptyLog
             // 
             this.ButtonEmptyLog.Location = new System.Drawing.Point(404, 242);
-            this.ButtonEmptyLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ButtonEmptyLog.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonEmptyLog.Name = "ButtonEmptyLog";
             this.ButtonEmptyLog.Size = new System.Drawing.Size(100, 29);
             this.ButtonEmptyLog.TabIndex = 6;
@@ -134,7 +134,7 @@
             // ButtonAbout
             // 
             this.ButtonAbout.Location = new System.Drawing.Point(9, 242);
-            this.ButtonAbout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ButtonAbout.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonAbout.Name = "ButtonAbout";
             this.ButtonAbout.Size = new System.Drawing.Size(100, 29);
             this.ButtonAbout.TabIndex = 7;
@@ -157,11 +157,11 @@
             this.Controls.Add(this.LabelHttpPort);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.ShowInTaskbar = false;
             this.Text = "自动精灵(AutoGenius)";
+            this.TopMost = true;
             this.Deactivate += new System.EventHandler(this.MainForm_Deactivate);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
